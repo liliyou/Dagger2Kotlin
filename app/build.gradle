@@ -27,14 +27,30 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.1'
+
+    // Dagger 2
+    compile 'com.google.dagger:dagger:2.4'
+    kapt 'com.google.dagger:dagger-compiler:2.4'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    // Tests
     testCompile 'junit:junit:4.12'
+//    testCompile 'com.nhaarman:mockito-kotlin:0.7.0'
+    
+
+    //general
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
 }
 repositories {
     mavenCentral()
